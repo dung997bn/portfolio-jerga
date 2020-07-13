@@ -15,16 +15,14 @@ class Header extends Component {
   render() {
     return (
       <Navbar
-        className="port-navbar port-default absolute"
+        className="port-navbar port-default absolute "
         color="transparent"
         dark
         expand="md"
       >
-        <NavbarBrand className="port-navbar-brand" href="/">
-          reactstrap
-        </NavbarBrand>
+        <BsNavBrand />
         <NavbarToggler onClick={this.toggle} />
-        <Collapse isOpen={this.stateisOpen} navbar>
+        <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem className="port-navbar-item">
               <BsNavLink href="/" title="Home" />
@@ -47,6 +45,14 @@ class Header extends Component {
     );
   }
 }
+
+const BsNavBrand = () => {
+  return (
+    <Link href="/">
+      <a className="navbar-brand port-navbar-brand">Fillip Jerga</a>
+    </Link>
+  );
+};
 
 const BsNavLink = (props) => {
   const { title, href } = props;

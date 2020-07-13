@@ -4,6 +4,7 @@ import axios from "axios";
 // import Link from "next/link";
 
 import { Link } from "../routes";
+import BasePage from "../components/BasePage";
 class Portfolio extends Component {
   static async getInitialProps() {
     let posts = [];
@@ -21,17 +22,19 @@ class Portfolio extends Component {
     const { posts } = this.props;
     return (
       <BaseLayout>
-        <h1>Port folio</h1>
-        <ul>
-          {posts &&
-            posts.map((post) => (
-              <li key={post.id} style={{ fontSize: "20px" }}>
-                <Link route={`/portfolios/${post.id}`}>
-                  <a>{post.title}</a>
-                </Link>
-              </li>
-            ))}
-        </ul>
+        <BasePage>
+          <h1>Port folio</h1>
+          <ul>
+            {posts &&
+              posts.map((post) => (
+                <li key={post.id} style={{ fontSize: "20px" }}>
+                  <Link route={`/portfolios/${post.id}`}>
+                    <a>{post.title}</a>
+                  </Link>
+                </li>
+              ))}
+          </ul>
+        </BasePage>
       </BaseLayout>
     );
   }
