@@ -1,36 +1,28 @@
 import React from "react";
-
-import axios from "axios";
-import { withRouter } from "next/router";
+import { withRouter, useRouter } from "next/router";
 import BasePage from "@/components/BasePage";
 import BaseLayout from "@/components/layout/BaseLayout";
+import { useGetPostById } from "@/actions";
 
-const Portfolio = (props) => {
-  const { portfolio } = props;
+const Portfolio = () => {
+  const router = useRouter();
+  const {data, error, loading} = useGetPostById(router.query.id);
+  debugger;
   return (
     <BaseLayout>
       <BasePage>
-        <h1>I am Portfolio page</h1>
-        <h1>{portfolio.title}</h1>
-        <p>BODY: {portfolio.body}</p>
-        <p>ID: {portfolio.id}</p>
+        {loading && <p>Loading...</p>}
+        {error ? <div className="alert alert-danger">{error.message}</div> : ""}
+        {data && (
+          <>
+            <h1>{data.title}</h1>
+            <p>BODY: {data.body}</p>
+            <p>ID: {data.id}</p>
+          </>
+        )}
       </BasePage>
     </BaseLayout>
   );
 };
 
-Portfolio.getInitialProps = async ({ query }) => {
-  let post = {};
-  try {
-    const res = await axios.get(
-      `https://jsonplaceholder.typicode.com/posts/${query.id}`
-    );
-    post = res.data;
-  } catch (e) {
-    console.error(e);
-  }
-
-  return { portfolio: post };
-};
-
-export default withRouter(Portfolio);
+export default Portfolio;

@@ -5,23 +5,21 @@ import BasePage from "@/components/BasePage";
 import { useGetPosts } from "@/actions";
 
 const Portfolios = () => {
-  const [portfolios, error] = useGetPosts();
+  const { data, error, loading } = useGetPosts();
   return (
     <BaseLayout>
       <BasePage>
-        <h1>Port folio</h1>
+        {loading && <p>Loading...</p>}
         <ul>
-          {portfolios &&
-            portfolios.map((p) => (
+          {data &&
+            data.map((p) => (
               <li key={p.id} style={{ fontSize: "20px" }}>
                 <Link href={`/portfolios/[id]`} as={`/portfolios/${p.id}`}>
                   <a>{p.title}</a>
                 </Link>
               </li>
             ))}
-            {/* {
-              error && <div className="alert alert-danger">{error.message}</div>
-            } */}
+          {error && <div className="alert alert-danger">{error.message}</div>}
         </ul>
       </BasePage>
     </BaseLayout>
