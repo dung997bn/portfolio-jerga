@@ -40,6 +40,14 @@ class Header extends Component {
               <BsNavLink href="/cv" title="Cv" />
             </NavItem>
           </Nav>
+          <Nav navbar>
+            <NavItem className="port-navbar-item">
+              <LoginBtn />
+            </NavItem>
+            <NavItem className="port-navbar-item">
+              <LogoutBtn />
+            </NavItem>
+          </Nav>
         </Collapse>
       </Navbar>
     );
@@ -54,11 +62,18 @@ const BsNavBrand = () => {
   );
 };
 
+const LoginBtn = () => (
+  <span className="nav-link port-navbar-link clickable">Login</span>
+);
+const LogoutBtn = () => (
+  <span className="nav-link port-navbar-link clickable">Log out</span>
+);
+
 const BsNavLink = (props) => {
   const { title, href } = props;
   return (
     <Link href={href}>
-      <a className="nav-link port-navbar-link"> {title} </a>
+      <a className="nav-link port-navbar-link "> {title} </a>
     </Link>
   );
 };
