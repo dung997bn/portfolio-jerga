@@ -63,7 +63,12 @@ const BsNavBrand = () => {
 };
 
 const LoginBtn = () => (
-  <span className="nav-link port-navbar-link clickable">Login</span>
+  <BsNavLink
+    href="/api/v1/login"
+    className="nav-link port-navbar-link clickable"
+  >
+    Login
+  </BsNavLink>
 );
 const LogoutBtn = () => (
   <span className="nav-link port-navbar-link clickable">Log out</span>

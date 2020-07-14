@@ -3,7 +3,7 @@ import axios from "axios";
 export default async (req, res) => {
   try {
     const axiosRes = await axios.get(
-      "https://jsonplaceholder.typicode1.com/posts"
+      "https://jsonplaceholder.typicode.com/posts"
     );
     const portfolios = axiosRes.data;
     const data = portfolios.slice(0, 10);
