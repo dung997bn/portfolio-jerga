@@ -2,7 +2,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "@/styles/main.scss";
 import React, { Component } from "react";
 
-const App =({ Component, pageProps })=>   <Component {...pageProps} />;
+const App =({ Component, pageProps })=> {
+   return <Component {...pageProps} />;
+} 
 
 
 

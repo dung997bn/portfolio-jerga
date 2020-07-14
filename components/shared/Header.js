@@ -9,10 +9,14 @@ import {
   NavItem,
 } from "reactstrap";
 class Header extends Component {
+  constructor(props) {
+    super(props);
+  }
   state = { isOpen: false };
   toggle = () => this.setState({ isOpen: !this.state.isOpen });
 
   render() {
+    const { user, loading } = this.props;
     return (
       <Navbar
         className="port-navbar port-default absolute "
@@ -39,14 +43,25 @@ class Header extends Component {
             <NavItem className="port-navbar-item">
               <BsNavLink href="/cv" title="Cv" />
             </NavItem>
+            <NavItem className="port-navbar-item">
+              <BsNavLink href="/secret" title="Secret" />
+            </NavItem>
           </Nav>
           <Nav navbar>
-            <NavItem className="port-navbar-item">
-              <LoginBtn />
-            </NavItem>
-            <NavItem className="port-navbar-item">
-              <LogoutBtn />
-            </NavItem>
+            {!loading && (
+              <>
+                {user && (
+                  <NavItem className="port-navbar-item">
+                    <LogoutBtn />
+                  </NavItem>
+                )}
+                {!user && (
+                  <NavItem className="port-navbar-item">
+                    <LoginBtn />
+                  </NavItem>
+                )}
+              </>
+            )}
           </Nav>
         </Collapse>
       </Navbar>
@@ -63,15 +78,14 @@ const BsNavBrand = () => {
 };
 
 const LoginBtn = () => (
-  <BsNavLink
-    href="/api/v1/login"
-    className="nav-link port-navbar-link clickable"
-  >
+  <a className="nav-link port-navbar-link clickable" href="/api/v1/login">
     Login
-  </BsNavLink>
+  </a>
 );
 const LogoutBtn = () => (
-  <span className="nav-link port-navbar-link clickable">Log out</span>
+  <a className="nav-link port-navbar-link clickable" href="/api/v1/logout">
+    Logout
+  </a>
 );
 
 const BsNavLink = (props) => {
