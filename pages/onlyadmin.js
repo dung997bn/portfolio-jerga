@@ -3,7 +3,7 @@ import BaseLayout from "@/components/layout/BaseLayout";
 import BasePage from "@/components/BasePage";
 import withAuth from "@/hoc/withAuth";
 
-const Secret = ({ user, loading }) => {
+const OnlyAdmin = ({ user, loading }) => {
   return (
     <BaseLayout user={user} loading={loading}>
       <BasePage>
@@ -13,4 +13,4 @@ const Secret = ({ user, loading }) => {
   );
 };
 
-export default withAuth(Secret)('admin');
+export default withAuth(OnlyAdmin)("admin");
